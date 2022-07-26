@@ -57,6 +57,11 @@ public class LL {
 		size++;
 	}
 	
+	//insert using recursion
+	public void insertRec(int val,int index) {
+		
+	}
+	
 	public int deleteLast() {
 		if(size <= 1) {
 			return deleteFirst();
@@ -143,20 +148,87 @@ public class LL {
 		}
 	}
 	
+	//questions
+	public void duplicates() {
+		Node node = head;
+		
+		while(node.next != null) {
+			if(node.value == node.next.value) {
+				node.next =node.next.next;
+				size--;
+			}
+			else {
+				node = node.next;
+			}
+		}
+		tail = node;
+		tail.next =null;
+	}
+	
+	public static LL merge(LL first,LL second ) {
+		Node f = first.head;
+		Node s = second.head;
+		
+		LL ans = new LL(); 
+		
+		while(f != null && s != null) {
+//			if(f.value == s.value) {
+//				ans.insertLast(f.value);
+//				ans.insertLast(s.value);
+//				f = f.next;
+//				s = s.next;
+//				
+//			}
+			if(f.value < s.value) {
+				ans.insertLast(f.value);
+				f = f.next;
+			}
+			else {
+				ans.insertLast(s.value);
+				s = s.next;
+			}
+		}
+		
+		while(f != null) {
+			ans.insertLast(f.value);
+			f = f.next;
+		}
+		
+		while(s != null) {
+			ans.insertLast(s.value);
+			s = s.next;
+		}
+		return ans;
+	}
+	
 	public static void main(String args[]) {
-		LL list=new LL();
-		list.insertFirst(3);
-		list.insertFirst(8);
-		list.insertFirst(5);
-		list.insertLast(19);
-		list.insert(7, 3);
-		list.display();
-		System.out.println(list.deleteFirst());
-		list.display();
-		System.out.println(list.deleteLast());
-		list.display();
-		System.out.println(list.delete(1));
-		list.display();
+//		LL list=new LL();
+//		list.insertFirst(3);
+//		list.insertFirst(5);
+//		list.insertFirst(5);
+//		list.insertLast(19);
+//		list.insert(7, 3);
+//		list.display();
+//		System.out.println(list.deleteFirst());
+//		list.display();
+//		System.out.println(list.deleteLast());
+//		list.display();
+//		System.out.println(list.delete(1));
+//		list.display();
+		
+//		list.duplicates();
+//		list.display();
+		
+		LL l1=new LL();
+		l1.insertFirst(1);
+		l1.insertLast(3);
+		l1.insertLast(5);
+		LL l2=new LL();
+		l2.insertFirst(1);
+		l2.insertLast(4);
+		l2.insertLast(8);
+		LL L=merge(l1,l2);
+		L.display();
 	}
 	
 }
