@@ -104,7 +104,7 @@ public class IterativeMethods {
 		if (root == null) return ans;
 		
 		stack.push(root);
-		while (!stack.isEmpty()) {
+		while (!stack.isEmpty()){
 			TreeNode cur = stack.pop();
 			ans.addFirst(cur.val);
 			if (cur.left != null) {
